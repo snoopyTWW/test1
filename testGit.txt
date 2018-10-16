@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace 绑定dao接口，根据【id=方法名】自动查询， -->
+<mapper namespace="com.dao.UserDao">
+
+    <resultMap id="resultMapUser" type="User" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="Name" property="name" jdbcType="VARCHAR" />
+        <result column="Age" property="age" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectAllUser" resultType="User">
+        select * FROM `user`;
+    </select>
+
+    <select id="login" resultType="User" parameterType="hashMap">
+        SELECT * FROM `user` WHERE `name` = #{name} AND `age` = #{psd}
+    </select>
+
+    <select id="register" resultType="User" parameterType="hashMap">
+        INSERT INTO `user` (`id`,`name`,`age`) VALUES (#{id},#{name},#{psd})
+    </select>
+
+</mapper>
